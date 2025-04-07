@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Cashier POS</string>
+    <string name="menu">Menu</string>
+    <string name="food">Food</string>
+    <string name="hot_drink">Hot Drink</string>
+    <string name="soft_drink">Soft Drink</string>
+    <string name="bread">Bread</string>
+    <string name="cake">Cake</string>
+    <string name="juice">Juice</string>
+
+    <string name="select_category_prompt">Select a category to view details</string>
+    <string name="invalid_category_error">Invalid category selected</string>
+</resources>
