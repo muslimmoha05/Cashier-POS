@@ -57,24 +57,25 @@ class HotDrinkViewModel(private val repository: HotDrinkRepository) : ViewModel(
     fun addHotDrinksManually() {
         viewModelScope.launch {
             val hotDrinks = listOf(
-                HotDrink(hotDrinkName = "ሻይ", hotDrinkPrice = 15.0),
-                HotDrink(hotDrinkName = "ሎሚ ሻይ", hotDrinkPrice = 20.0),
-                HotDrink(hotDrinkName = "ቡና", hotDrinkPrice = 30.0),
-                HotDrink(hotDrinkName = "ቡና ስፕሪስ", hotDrinkPrice = 30.0),
+                HotDrink(hotDrinkName = "ሻይ", hotDrinkPrice = 20.0),
+                HotDrink(hotDrinkName = "ሎሚ ሻይ", hotDrinkPrice = 25.0),
+                HotDrink(hotDrinkName = "ቡና", hotDrinkPrice = 40.0),
+                HotDrink(hotDrinkName = "ቡና ስፕሪስ", hotDrinkPrice = 40.0),
                 HotDrink(hotDrinkName = "ስቲም ቡና", hotDrinkPrice = 20.0),
                 HotDrink(hotDrinkName = "ማኪያቶ", hotDrinkPrice = 40.0),
                 HotDrink(hotDrinkName = "ወተት", hotDrinkPrice = 40.0),
-                HotDrink(hotDrinkName = "ፈልቶ የቀዘቀዘ ወተት", hotDrinkPrice = 80.0),
-                HotDrink(hotDrinkName = "ለውዝ ሻይ", hotDrinkPrice = 30.0),
+                HotDrink(hotDrinkName = "ፈልቶ የቀዘቀዘ ወተት", hotDrinkPrice = 60.0),
+                HotDrink(hotDrinkName = "ለውዝ ሻይ", hotDrinkPrice = 40.0),
                 HotDrink(hotDrinkName = "ለውዝ በወተት", hotDrinkPrice = 40.0),
                 HotDrink(hotDrinkName = "ለውዝ በቀሽር", hotDrinkPrice = 40.0),
+                HotDrink(hotDrinkName = "ወተት በቀሽር", hotDrinkPrice = 40.0),
                 HotDrink(hotDrinkName = "ካፕችኖ", hotDrinkPrice = 60.0),
                 HotDrink(hotDrinkName = "ማህበራዊ", hotDrinkPrice = 50.0),
-                HotDrink(hotDrinkName = "ቀሽር", hotDrinkPrice = 25.0),
-                HotDrink(hotDrinkName = "ጦስኝ ሻይ", hotDrinkPrice = 25.0),
-                HotDrink(hotDrinkName = "ብርቱካን ሻይ", hotDrinkPrice = 40.0),
-                HotDrink(hotDrinkName = "አናናስ ሽይ", hotDrinkPrice = 40.0),
-                HotDrink(hotDrinkName = "ማንጎ ሻይ", hotDrinkPrice = 40.0),
+                HotDrink(hotDrinkName = "ቀሽር", hotDrinkPrice = 30.0),
+                HotDrink(hotDrinkName = "ጦስኝ ሻይ", hotDrinkPrice = 30.0),
+                HotDrink(hotDrinkName = "ብርቱካን ሻይ", hotDrinkPrice = 50.0),
+                HotDrink(hotDrinkName = "አናናስ ሽይ", hotDrinkPrice = 50.0),
+                HotDrink(hotDrinkName = "ማንጎ ሻይ", hotDrinkPrice = 50.0),
                 HotDrink(hotDrinkName = "የጾም ማኪያቶ", hotDrinkPrice = 50.0)
             )
             repository.insertHotDrinksManually(hotDrinks)

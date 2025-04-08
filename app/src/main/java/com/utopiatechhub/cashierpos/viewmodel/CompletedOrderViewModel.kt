@@ -76,7 +76,7 @@ class CompletedOrderViewModel(private val completedOrderRepository: CompletedOrd
             "ዓሳ ቋንጣ ፍርፍር", "ዓሳ ክትፎ",
         ),
         "ቂጣ" to listOf(
-            "ስፔሻል ፈጢራ በጭማሪ እንቁላል", "መዐሱም", "ጨጨብሳ ኖርማል", "ጨጨብሳ ስፔሻል", "ፈጢራ ኖርማል", "ቂጣ ፍርፍር ኖርማል", "ፈጢራ ስፔሻል",
+            "ስፔሻል ፈጢራ በጭማሪ እንቁላል", "መዐሱም", "ጨጨብሳ", "ፈጢራ ኖርማል", "ቂጣ ፍርፍር ኖርማል", "ፈጢራ ስፔሻል",
             "ቂጣ ፍርፍር ስፔሻል", "የጾም መዐሱም", "የጾም ጨጨብሳ", "የጾም ቂጣ ፍርፍር", "የጾም ፈጢራ", "ናሽፍ ስፔሻል", "ፈታህ ስፔሻል",
         ),
         "ፉል" to listOf(
@@ -94,15 +94,15 @@ class CompletedOrderViewModel(private val completedOrderRepository: CompletedOrd
         "በርገር" to listOf(
             "ካቻፕ", "ደብል ኖርማል ዓሳ በርገር", "ደብል ስፔሻል ዓሳ በርገር", "ቺዝ ዓሳ በርገር", "ስፔሻል ዓሳ በርገር",  "ኖርማል ዓሳ በርገር",
             "ቱና በርገር", "ስፔሻል አትክልት በርገር", "ኖርማል አትክልት በርገር", "ቺዝ በርገር", "ስፔሻል በርገር", "ደብል ኖርማል በርገር",
-            "ደብል ስፔሻል በርገር", "ደብል ስፔሻል ቱና በርገር", "ኖርማል በርገር",
+            "ደብል ስፔሻል በርገር", "ደብል ስፔሻል ቱና በርገር", "ኖርማል በርገር", "ደብል ቺዝ በርገር",
         ),
         "ፒዛ" to listOf(
             "ስፔሻል ፒዛ", "ፍሩት ፒዛ", "ቱና ፒዛ", "አትክልት ፒዛ", "መሽሩም ፒዛ", "ስፔሻል አትክልት ፒዛ", "አትክልት በቱና ፒዛ", "ቱና ዊዝ ቺዝ ፒዛ",
-            "ማርጋሪታ ፒዛ", "ፎርኮርነር ፒዛ", "አቢሲኒያ ፒዛ", "የቤቱ ስፔሻል ፒዛ", "ሚኒ ፒዛ", "ላርጅ ፒዛ",  "ኦሬንታል ፒዛ",
+            "ማርጋሪታ ፒዛ", "ፎርኮርነር ፒዛ", "አቢሲኒያ ፒዛ", "የቤቱ ስፔሻል ፒዛ", "ሚኒ ፒዛ", "ላርጅ ፒዛ",  "ኦሬንታል ፒዛ", "ቺዝ ፒዛ",
         ),
         "ሳንዱች" to listOf(
             "ክለብ ሳንዱች",  "ስፔሻል ክለብ ሳንዱች", "ቢፍ ክለብ ሳንዱች", "ቱና ክለብ ሳንዱች", "ቺዝ ክለብ ሳንዱች", "አትክልት ሳንዱች", "ቺዝ ሳንዱች",
-            "ቱና ሳንዱች", "ስፔሻል ሳንዱች", "ኖርማል እንቁላል ሳንዱች", "ስፔሻል ቱና ሳንዱች", "ባናና ሳንዱች", "ችፕስ",
+            "ቱና ሳንዱች", "ስፔሻል ሳንዱች", "እንቁላል ሳንዱች", "ስፔሻል ቱና ሳንዱች", "ባናና ሳንዱች", "ችፕስ",
         )
     )
 
@@ -131,8 +131,7 @@ class CompletedOrderViewModel(private val completedOrderRepository: CompletedOrd
                 "ፈጢራ ስፔሻል" to completedOrderRepository.getFoodCount("ፈጢራ ስፔሻል"),
                 "ቂጣ ፍርፍር ኖርማል" to completedOrderRepository.getFoodCount("ቂጣ ፍርፍር ኖርማል"),
                 "ፈጢራ ኖርማል" to completedOrderRepository.getFoodCount("ፈጢራ ኖርማል"),
-                "ጨጨብሳ ስፔሻል" to completedOrderRepository.getFoodCount("ጨጨብሳ ስፔሻል"),
-                "ጨጨብሳ ኖርማል" to completedOrderRepository.getFoodCount("ጨጨብሳ ኖርማል"),
+                "ጨጨብሳ" to completedOrderRepository.getFoodCount("ጨጨብሳ"),
                 "መዐሱም" to completedOrderRepository.getFoodCount("መዐሱም"),
                 "ናሽፍ ስፔሻል" to completedOrderRepository.getFoodCount("ናሽፍ ስፔሻል"),
                 "ፈታህ ስፔሻል" to completedOrderRepository.getFoodCount("ፈታህ ስፔሻል"),
@@ -225,13 +224,14 @@ class CompletedOrderViewModel(private val completedOrderRepository: CompletedOrd
                 "ቺዝ ሳንዱች" to completedOrderRepository.getFoodCount("ቺዝ ሳንዱች"),
                 "ቱና ሳንዱች" to completedOrderRepository.getFoodCount("ቱና ሳንዱች"),
                 "ስፔሻል ሳንዱች" to completedOrderRepository.getFoodCount("ስፔሻል ሳንዱች"),
-                "ኖርማል እንቁላል ሳንዱች" to completedOrderRepository.getFoodCount("ኖርማል እንቁላል ሳንዱች"),
+                "እንቁላል ሳንዱች" to completedOrderRepository.getFoodCount("እንቁላል ሳንዱች"),
                 "ስፔሻል ቱና ሳንዱች" to completedOrderRepository.getFoodCount("ስፔሻል ቱና ሳንዱች"),
                 "ባናና ሳንዱች" to completedOrderRepository.getFoodCount("ባናና ሳንዱች"),
                 "ችፕስ" to completedOrderRepository.getFoodCount("ችፕስ"),
 
                 "ስፔሻል ፒዛ" to completedOrderRepository.getFoodCount("ስፔሻል ፒዛ"),
                 "ፍሩት ፒዛ" to completedOrderRepository.getFoodCount("ፍሩት ፒዛ"),
+                "ቺዝ ፒዛ" to completedOrderRepository.getFoodCount("ቺዝ ፒዛ"),
                 "ቱና ፒዛ" to completedOrderRepository.getFoodCount("ቱና ፒዛ"),
                 "አትክልት ፒዛ" to completedOrderRepository.getFoodCount("አትክልት ፒዛ"),
                 "መሽሩም ፒዛ" to completedOrderRepository.getFoodCount("መሽሩም ፒዛ"),
@@ -247,6 +247,7 @@ class CompletedOrderViewModel(private val completedOrderRepository: CompletedOrd
                 "ኦሬንታል ፒዛ" to completedOrderRepository.getFoodCount("ኦሬንታል ፒዛ"),
 
                 "ኖርማል በርገር" to completedOrderRepository.getFoodCount("ኖርማል በርገር"),
+                "ደብል ቺዝ በርገር" to completedOrderRepository.getFoodCount("ደብል ቺዝ በርገር"),
                 "ደብል ስፔሻል ቱና በርገር" to completedOrderRepository.getFoodCount("ደብል ስፔሻል ቱና በርገር"),
                 "ደብል ስፔሻል በርገር" to completedOrderRepository.getFoodCount("ደብል ስፔሻል በርገር"),
                 "ደብል ኖርማል በርገር" to completedOrderRepository.getFoodCount("ደብል ኖርማል በርገር"),
