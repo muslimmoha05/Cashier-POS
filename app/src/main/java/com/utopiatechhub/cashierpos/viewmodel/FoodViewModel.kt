@@ -240,7 +240,7 @@ class FoodViewModel(private val repository: FoodRepository) : ViewModel() {
                 Food(foodName = "ቺዝ ዓሳ በርገር", foodCategoryId = 7, foodPrice = 300.00),
                 Food(foodName = "ደብል ስፔሻል ዓሳ በርገር", foodCategoryId = 7, foodPrice = 450.00),
                 Food(foodName = "ደብል ኖርማል ዓሳ በርገር", foodCategoryId = 7, foodPrice = 400.00),
-                Food(foodName = "ካቻፕ", foodCategoryId = 7, foodPrice = 40.00)
+                Food(foodName = "ካቻፕ", foodCategoryId = 7, foodPrice = 40.00),
 
             )
             repository.addFoodManually(items)
