@@ -26,6 +26,9 @@ interface HotDrinkDao {
     @Delete
     suspend fun delete(hotDrink: HotDrink)
 
+    @Query("DELETE FROM hot_drink_table")
+    suspend fun deleteAllHotDrinks()
+
     @Query("DELETE FROM sqlite_sequence WHERE name = 'hot_drink_table'")
     suspend fun resetPrimaryKey()
 

@@ -63,6 +63,12 @@ class FoodCategoryViewModel @Inject constructor(private val repository: FoodCate
         }
     }
 
+    fun deleteAllCategories() {
+        viewModelScope.launch {
+            repository.deleteAllCategories()
+        }
+    }
+
     fun getCategoryById(categoryId: Long) {
         viewModelScope.launch {
             val category = repository.getCategoryById(categoryId)
@@ -89,7 +95,7 @@ class FoodCategoryViewModel @Inject constructor(private val repository: FoodCate
             repository.addCategoryManually(
                 FoodCategory(
                     categoryName = "Fasting Food",
-                    translatedName = "የጾም ማግቦች",
+                    translatedName = "የጾም ምግቦች",
                     photoUrl = ""
                 )
             )

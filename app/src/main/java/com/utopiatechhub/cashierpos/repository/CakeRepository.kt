@@ -20,6 +20,11 @@ class CakeRepository(private val cakeDao: CakeDao) {
         cakeDao.delete(cake)
     }
 
+    suspend fun deleteAllCakes() {
+        cakeDao.deleteAllCakes()
+        cakeDao.resetPrimaryKey()
+    }
+
     suspend fun addCakeManually(cake: List<Cake>) {
         cakeDao.insertCakeManually(cake)
     }

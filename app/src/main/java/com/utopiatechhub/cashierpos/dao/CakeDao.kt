@@ -24,6 +24,9 @@ interface CakeDao {
     @Delete
     suspend fun delete(cake: Cake)
 
+    @Query("DELETE FROM cake_table")
+    suspend fun deleteAllCakes()
+
     @Query("SELECT * FROM cake_table")
     fun getAllCakes(): Flow<List<Cake>>
 

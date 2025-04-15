@@ -20,6 +20,11 @@ class FoodCategoryRepository(private val foodCategoryDao: FoodCategoryDao) {
         foodCategoryDao.delete(foodCategory)
     }
 
+    suspend fun deleteAllCategories() {
+        foodCategoryDao.deleteAllCategories()
+        foodCategoryDao.resetPrimaryKey()
+    }
+
     suspend fun getCategoryById(categoryId: Long): FoodCategory? {
         return foodCategoryDao.getCategoryById(categoryId)
     }

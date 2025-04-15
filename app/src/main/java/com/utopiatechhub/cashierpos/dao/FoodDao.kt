@@ -7,6 +7,7 @@ import androidx.room.Query
 import androidx.room.Update
 import androidx.room.Delete
 import com.utopiatechhub.cashierpos.data.Food
+import com.utopiatechhub.cashierpos.data.FoodCategory
 import com.utopiatechhub.cashierpos.data.FoodWithCategory
 import kotlinx.coroutines.flow.Flow
 
@@ -19,11 +20,17 @@ interface FoodDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(food: Food)
 
+    @Insert
+    suspend fun insertFoodManually(food: List<Food>)
+
     @Update
     suspend fun update(food: Food)
 
     @Delete
     suspend fun delete(food: Food)
+
+    @Query("DELETE FROM food_table")
+    suspend fun deleteAllFoods()
 
     // Fetch all foods with their category name
     @Query("""
@@ -53,6 +60,6 @@ interface FoodDao {
     """)
     fun getFoodsByCategory(foodCategoryId: Long): Flow<List<FoodWithCategory>>
 
-    @Insert
-    suspend fun insertFoodManually(food: List<Food>)
+    @Query("DELETE FROM sqlite_sequence WHERE name = 'food_table'")
+    suspend fun resetPrimaryKey()
 }

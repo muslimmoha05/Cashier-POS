@@ -20,6 +20,11 @@ class HotDrinkRepository(private val hotDrinkDao: HotDrinkDao) {
         hotDrinkDao.delete(hotDrink)
     }
 
+    suspend fun deleteAllHotDrinks() {
+        hotDrinkDao.deleteAllHotDrinks()
+        hotDrinkDao.resetPrimaryKey()
+    }
+
     suspend fun insertHotDrinksManually(hotDrink: List<HotDrink>) {
         hotDrinkDao.insertHotDrinksManually(hotDrink)
     }

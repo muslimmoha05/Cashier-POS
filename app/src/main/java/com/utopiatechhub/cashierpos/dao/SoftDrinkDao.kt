@@ -26,6 +26,9 @@ interface SoftDrinkDao {
     @Delete
     suspend fun delete(softDrink: SoftDrink)
 
+    @Query("DELETE FROM soft_drink_table")
+    suspend fun deleteAllSoftDrinks()
+
     @Query("DELETE FROM sqlite_sequence WHERE name = 'soft_drink_table'")
     suspend fun resetPrimaryKey()
 }

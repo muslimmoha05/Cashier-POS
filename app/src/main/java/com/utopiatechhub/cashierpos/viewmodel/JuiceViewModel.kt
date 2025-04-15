@@ -52,6 +52,12 @@ class JuiceViewModel(private val repository: JuiceRepository) : ViewModel() {
         }
     }
 
+    fun deleteAllJuices() {
+        viewModelScope.launch {
+            repository.deleteAllJuices()
+        }
+    }
+
     fun addJuicesManually() {
         viewModelScope.launch {
             val juices = listOf(

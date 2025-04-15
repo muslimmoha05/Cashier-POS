@@ -52,6 +52,12 @@ class SoftDrinkViewModel(private val repository: SoftDrinkRepository) : ViewMode
         }
     }
 
+    fun deleteAllSoftDrinks() {
+        viewModelScope.launch {
+            repository.deleteAllSoftDrinks()
+        }
+    }
+
     fun addSoftDrinksManually() {
         viewModelScope.launch {
             val softDrinks = listOf(

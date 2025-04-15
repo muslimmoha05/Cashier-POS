@@ -16,6 +16,11 @@ class BreadRepository(private val breadDao: BreadDao) {
         breadDao.update(bread)
     }
 
+    suspend fun deleteAllBreads() {
+        breadDao.deleteAllBreads()
+        breadDao.resetPrimaryKey()
+    }
+
     suspend fun deleteBread(bread: Bread) {
         breadDao.delete(bread)
     }

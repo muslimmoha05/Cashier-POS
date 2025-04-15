@@ -20,6 +20,9 @@ interface BreadDao {
     @Query("SELECT * FROM bread_table")
     fun getAllBreads(): Flow<List<Bread>>
 
+    @Query("DELETE FROM bread_table")
+    suspend fun deleteAllBreads()
+
     @Update
     suspend fun update(bread: Bread)
 

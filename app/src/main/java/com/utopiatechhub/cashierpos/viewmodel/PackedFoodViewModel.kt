@@ -52,6 +52,12 @@ class PackedFoodViewModel(private val repository: PackedFoodRepository) : ViewMo
         }
     }
 
+    fun deleteAllPackedFoods() {
+        viewModelScope.launch {
+            repository.deleteAllPackedFoods()
+        }
+    }
+
     fun addPackedFoodsManually() {
         viewModelScope.launch {
             val packedFoods = listOf(

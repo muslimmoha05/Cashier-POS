@@ -18,11 +18,17 @@ interface FoodCategoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(category: FoodCategory)
 
+    @Insert
+    suspend fun insertCategoryManually(category: FoodCategory)
+
     @Update
     suspend fun update(category: FoodCategory)
 
     @Delete
     suspend fun delete(category: FoodCategory)
+
+    @Query("DELETE FROM food_category_table")
+    suspend fun deleteAllCategories()
 
     // Fetch all categories ordered alphabetically
     @Query("SELECT * FROM food_category_table")
@@ -32,6 +38,6 @@ interface FoodCategoryDao {
     @Query("SELECT * FROM food_category_table WHERE id = :foodCategoryId LIMIT 1")
     suspend fun getCategoryById(foodCategoryId: Long): FoodCategory?
 
-    @Insert
-    suspend fun insertCategoryManually(category: FoodCategory)
+    @Query("DELETE FROM sqlite_sequence WHERE name = 'food_category_table'")
+    suspend fun resetPrimaryKey()
 }

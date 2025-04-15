@@ -54,6 +54,12 @@ class HotDrinkViewModel(private val repository: HotDrinkRepository) : ViewModel(
         }
     }
 
+    fun deleteAllHotDrinks() {
+        viewModelScope.launch {
+            repository.deleteAllHotDrinks()
+        }
+    }
+
     fun addHotDrinksManually() {
         viewModelScope.launch {
             val hotDrinks = listOf(
@@ -61,7 +67,7 @@ class HotDrinkViewModel(private val repository: HotDrinkRepository) : ViewModel(
                 HotDrink(hotDrinkName = "ሎሚ ሻይ", hotDrinkPrice = 25.0),
                 HotDrink(hotDrinkName = "ቡና", hotDrinkPrice = 40.0),
                 HotDrink(hotDrinkName = "ቡና ስፕሪስ", hotDrinkPrice = 40.0),
-                HotDrink(hotDrinkName = "ስቲም ቡና", hotDrinkPrice = 20.0),
+                HotDrink(hotDrinkName = "ስቲም ቡና", hotDrinkPrice = 30.0),
                 HotDrink(hotDrinkName = "ማኪያቶ", hotDrinkPrice = 40.0),
                 HotDrink(hotDrinkName = "ወተት", hotDrinkPrice = 40.0),
                 HotDrink(hotDrinkName = "ፈልቶ የቀዘቀዘ ወተት", hotDrinkPrice = 60.0),

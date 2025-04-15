@@ -21,6 +21,11 @@ class FoodRepository(private val foodDao: FoodDao) {
         foodDao.delete(food)
     }
 
+    suspend fun deleteAllFoods() {
+        foodDao.deleteAllFoods()
+        foodDao.resetPrimaryKey()
+    }
+
     fun getFoodsByCategory(foodCategoryId: Long): Flow<List<FoodWithCategory>> {
         return foodDao.getFoodsByCategory(foodCategoryId)
     }

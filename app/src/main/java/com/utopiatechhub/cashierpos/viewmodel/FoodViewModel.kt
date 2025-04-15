@@ -66,6 +66,12 @@ class FoodViewModel(private val repository: FoodRepository) : ViewModel() {
         }
     }
 
+    fun deleteAllFoods() {
+        viewModelScope.launch {
+            repository.deleteAllFoods()
+        }
+    }
+
     // Fetch foods by category
     fun fetchFoodsByCategory(foodCategoryId: Long) {
         viewModelScope.launch {

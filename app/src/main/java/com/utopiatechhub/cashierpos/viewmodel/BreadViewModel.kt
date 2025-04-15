@@ -52,6 +52,12 @@ class BreadViewModel(private val repository: BreadRepository) : ViewModel() {
         }
     }
 
+    fun deleteAllBreads() {
+        viewModelScope.launch {
+            repository.deleteAllBreads()
+        }
+    }
+
     fun addBreadsManually() {
         viewModelScope.launch {
             val breads = listOf(

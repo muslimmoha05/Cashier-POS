@@ -26,6 +26,9 @@ interface JuiceDao {
     @Delete
     suspend fun delete(juice: Juice)
 
+    @Query("DELETE FROM juice_table")
+    suspend fun deleteAllJuices()
+
     @Query("DELETE FROM sqlite_sequence WHERE name = 'juice_table'")
     suspend fun resetPrimaryKey()
 }

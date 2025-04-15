@@ -20,6 +20,11 @@ class JuiceRepository(private val juiceDao: JuiceDao) {
         juiceDao.delete(juice)
     }
 
+    suspend fun deleteAllJuices() {
+        juiceDao.deleteAllJuices()
+        juiceDao.resetPrimaryKey()
+    }
+
     suspend fun insertJuicesManually(juices: List<Juice>) {
         juiceDao.insertJuicesManually(juices)
     }

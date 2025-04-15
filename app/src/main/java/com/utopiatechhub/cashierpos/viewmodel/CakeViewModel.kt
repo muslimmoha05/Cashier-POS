@@ -56,6 +56,12 @@ class CakeViewModel(private val repository: CakeRepository) : ViewModel() {
         }
     }
 
+    fun deleteAllCakes() {
+        viewModelScope.launch {
+            repository.deleteAllCakes()
+        }
+    }
+
     fun addCakeManually() {
         viewModelScope.launch {
             val items = listOf(

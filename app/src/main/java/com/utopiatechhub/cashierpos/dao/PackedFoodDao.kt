@@ -26,6 +26,9 @@ interface PackedFoodDao {
     @Delete
     suspend fun delete(packedFood: PackedFood)
 
+    @Query("DELETE FROM packed_food_table")
+    suspend fun deleteAllPackedFoods()
+
     @Query("DELETE FROM sqlite_sequence WHERE name = 'packed_food_table'")
     suspend fun resetPrimaryKey()
 

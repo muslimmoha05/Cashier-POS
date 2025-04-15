@@ -20,6 +20,11 @@ class SoftDrinkRepository(private val softDrinkDao: SoftDrinkDao) {
         softDrinkDao.delete(softDrink)
     }
 
+    suspend fun deleteAllSoftDrinks() {
+        softDrinkDao.deleteAllSoftDrinks()
+        softDrinkDao.resetPrimaryKey()
+    }
+
     suspend fun insertSoftDrinksManually(softDrinks: List<SoftDrink>) {
         softDrinkDao.insertSoftDrinksManually(softDrinks)
     }

@@ -20,6 +20,11 @@ class PackedFoodRepository(private val  packedFoodDao: PackedFoodDao) {
         packedFoodDao.delete(packedFood)
     }
 
+    suspend fun deleteAllPackedFoods() {
+        packedFoodDao.deleteAllPackedFoods()
+        packedFoodDao.resetPrimaryKey()
+    }
+
     suspend fun insertPackedFoodsManually(packedFoods: List<PackedFood>) {
         packedFoodDao.insertPackedFoodsManually(packedFoods)
     }
