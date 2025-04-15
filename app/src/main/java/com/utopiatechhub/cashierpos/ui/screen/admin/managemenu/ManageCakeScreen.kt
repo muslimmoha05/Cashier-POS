@@ -24,6 +24,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.DeleteSweep
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.AlertDialog
@@ -39,6 +40,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -83,10 +85,9 @@ fun ManageCakeScreen(navController: NavController) {
     var showDeleteConfirmation by remember { mutableStateOf(false) }
     var showSuccessMessage by remember { mutableStateOf(false) }
     var successMessage by remember { mutableStateOf("") }
+    var showDeleteAllConfirmation by remember { mutableStateOf(false) }
 
-    val filteredCakes = if (searchQuery.isEmpty()) allCakes else {
-        allCakes.filter { it.cakeName.contains(searchQuery, ignoreCase = true) }
-    }
+    val filteredCakes = if (searchQuery.isEmpty()) allCakes else { allCakes.filter { it.cakeName.contains(searchQuery, ignoreCase = true) } }
     val isAddButtonEnabled = cakeName.isNotBlank() && cakePrice.isNotBlank()
 
     LaunchedEffect(showSuccessMessage) {
@@ -136,6 +137,11 @@ fun ManageCakeScreen(navController: NavController) {
                         if (!isSearchActive) searchQuery = ""
                     }) {
                         Icon(Icons.Default.Search, contentDescription = "Search")
+                    }
+                    if (allCakes.isNotEmpty()) {
+                        IconButton(onClick = { showDeleteAllConfirmation = true }) {
+                            Icon(Icons.Default.DeleteSweep, contentDescription = "Delete All Cakes")
+                        }
                     }
                 }
             )
@@ -234,6 +240,7 @@ fun ManageCakeScreen(navController: NavController) {
                     }
                     Button(
                         onClick = { cakeViewModel.addCakeManually() },
+                        enabled = allCakes.isEmpty(),
                         colors = ButtonDefaults.buttonColors(containerColor = Teal)
                     ) {
                         Text("Add Manually")
@@ -272,6 +279,32 @@ fun ManageCakeScreen(navController: NavController) {
                         colors = ButtonDefaults.buttonColors(containerColor = Teal)
                     ) {
                         Text("Confirm", color = Color.White)
+                    }
+                }
+            )
+        }
+
+        if (showDeleteAllConfirmation) {
+            AlertDialog(
+                onDismissRequest = { showDeleteAllConfirmation = false },
+                title = { Text("Delete All Breads") },
+                text = { Text("Are you sure you want to delete all bread items? This action cannot be undone.") },
+                confirmButton = {
+                    Button(
+                        onClick = {
+                            cakeViewModel.deleteAllCakes()
+                            showDeleteAllConfirmation = false
+                            successMessage = "All breads deleted successfully"
+                            showSuccessMessage = true
+                        },
+                        colors = ButtonDefaults.buttonColors(containerColor = Teal)
+                    ) {
+                        Text("Confirm", color = Color.White)
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = { showDeleteAllConfirmation = false }) {
+                        Text("Cancel")
                     }
                 }
             )

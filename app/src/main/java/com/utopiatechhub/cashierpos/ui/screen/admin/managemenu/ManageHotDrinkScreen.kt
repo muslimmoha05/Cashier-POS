@@ -63,6 +63,8 @@ import com.utopiatechhub.cashierpos.viewmodel.HotDrinkViewModel
 import com.utopiatechhub.cashierpos.viewmodel.factory.HotDrinkViewModelFactory
 import kotlinx.coroutines.delay
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.filled.DeleteSweep
+import androidx.compose.material3.TextButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -79,6 +81,7 @@ fun ManageHotDrinkScreen(navController: NavController) {
     var hotDrinkToDelete by remember { mutableStateOf<HotDrink?>(null) }
     var showSuccessMessage by remember { mutableStateOf(false) }
     var successMessage by remember { mutableStateOf("") }
+    var showDeleteAllConfirmation by remember { mutableStateOf(false) }
 
     val context = LocalContext.current
     val database = AppDatabase.getDatabase(context.applicationContext)
@@ -139,6 +142,11 @@ fun ManageHotDrinkScreen(navController: NavController) {
                         if (!isSearchActive) searchQuery = ""
                     }) {
                         Icon(Icons.Default.Search, contentDescription = "Search")
+                    }
+                    if (allHotDrinks.isNotEmpty()) {
+                        IconButton(onClick = { showDeleteAllConfirmation = true }) {
+                            Icon(Icons.Default.DeleteSweep, contentDescription = "Delete All Hot Drinks")
+                        }
                     }
                 }
             )
@@ -232,6 +240,7 @@ fun ManageHotDrinkScreen(navController: NavController) {
                     }
                     Button(
                         onClick = { hotDrinkViewModel.addHotDrinksManually() },
+                        enabled = allHotDrinks.isEmpty(),
                         colors = ButtonDefaults.buttonColors(containerColor = Teal)
                     ) {
                         Text("Add Manually")
@@ -267,6 +276,32 @@ fun ManageHotDrinkScreen(navController: NavController) {
                         colors = ButtonDefaults.buttonColors(containerColor = Teal)
                     ) {
                         Text("Confirm", color = Color.White)
+                    }
+                }
+            )
+        }
+
+        if (showDeleteAllConfirmation) {
+            AlertDialog(
+                onDismissRequest = { showDeleteAllConfirmation = false },
+                title = { Text("Delete All Breads") },
+                text = { Text("Are you sure you want to delete all bread items? This action cannot be undone.") },
+                confirmButton = {
+                    Button(
+                        onClick = {
+                            hotDrinkViewModel.deleteAllHotDrinks()
+                            showDeleteAllConfirmation = false
+                            successMessage = "All breads deleted successfully"
+                            showSuccessMessage = true
+                        },
+                        colors = ButtonDefaults.buttonColors(containerColor = Teal)
+                    ) {
+                        Text("Confirm", color = Color.White)
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = { showDeleteAllConfirmation = false }) {
+                        Text("Cancel")
                     }
                 }
             )
