@@ -533,7 +533,7 @@ fun BreadItem(
                 Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
-                    text = "$${"%.2f".format(bread.breadPrice)}",
+                    text = " ${"%.2f".format(bread.breadPrice)} ",
                     style = MaterialTheme.typography.titleSmall.copy(
                         fontWeight = FontWeight.Bold,
                         color = TealDark

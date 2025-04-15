@@ -526,7 +526,7 @@ fun JuiceItem(
                 Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
-                    text = "$${"%.2f".format(juice.juicePrice)}",
+                    text = " ${"%.2f".format(juice.juicePrice)}",
                     style = MaterialTheme.typography.titleSmall.copy(
                         fontWeight = FontWeight.Bold,
                         color = TealDark

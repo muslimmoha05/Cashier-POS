@@ -533,7 +533,7 @@ fun SoftDrinkItem(
                 Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
-                    text = "$${"%.2f".format(softDrink.softDrinkPrice)}",
+                    text = " ${"%.2f".format(softDrink.softDrinkPrice)}",
                     style = MaterialTheme.typography.titleSmall.copy(
                         fontWeight = FontWeight.Bold,
                         color = TealDark

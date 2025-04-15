@@ -533,7 +533,7 @@ fun CakeItem(
                 Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
-                    text = "$${"%.2f".format(cake.cakePrice)}",
+                    text = " ${"%.2f".format(cake.cakePrice)}",
                     style = MaterialTheme.typography.titleSmall.copy(
                         fontWeight = FontWeight.Bold,
                         color = TealDark

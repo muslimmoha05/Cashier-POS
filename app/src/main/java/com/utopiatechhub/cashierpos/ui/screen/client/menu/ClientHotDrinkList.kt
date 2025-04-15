@@ -464,7 +464,7 @@ fun HotDrinkItem(
                 Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
-                    text = "$${"%.2f".format(hotDrink.hotDrinkPrice)}",
+                    text = " ${"%.2f".format(hotDrink.hotDrinkPrice)}",
                     style = MaterialTheme.typography.titleSmall.copy(
                         fontWeight = FontWeight.Bold,
                         color = TealDark

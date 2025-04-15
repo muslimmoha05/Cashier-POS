@@ -536,7 +536,7 @@ fun FoodItem(
                 Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
-                    text = "$${"%.2f".format(foodWithCategory.foodPrice)}",
+                    text = " ${"%.2f".format(foodWithCategory.foodPrice)}",
                     style = MaterialTheme.typography.titleSmall.copy(
                         fontWeight = FontWeight.Bold,
                         color = TealDark
