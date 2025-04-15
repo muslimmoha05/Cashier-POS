@@ -181,7 +181,7 @@ fun PackedFoodItem(
                 Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
-                    text = "$${"%.2f".format(packedFood.packedFoodPrice)}",
+                    text = "${"%.2f".format(packedFood.packedFoodPrice)} ETB",
                     style = MaterialTheme.typography.titleSmall.copy(
                         fontWeight = FontWeight.Bold,
                         color = TealDark
@@ -280,6 +280,7 @@ fun PackedFoodItem(
                         completedPackedFoodViewModel.insert(completedPackedFood)
 
                         showAddedAnimation = true
+                        quantity = 1
 
                         CoroutineScope(Dispatchers.Main).launch {
                             delay(1000)

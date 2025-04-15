@@ -177,7 +177,7 @@ fun CakeItem(
                     overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
                 )
                 Text(
-                    text = "$${"%.2f".format(cake.cakePrice)}",
+                    text = " ${"%.2f".format(cake.cakePrice)} ",
                     style = MaterialTheme.typography.titleSmall.copy(
                         fontWeight = FontWeight.Bold,
                         color = TealDark
@@ -275,6 +275,7 @@ fun CakeItem(
                         completedCakeViewModel.insert(completedCake)
 
                         showAddedAnimation = true
+                        cakeQuantity = 1
 
                         CoroutineScope(Dispatchers.Main).launch {
                             delay(1000)

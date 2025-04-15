@@ -176,7 +176,7 @@ fun BreadItem(
                     overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
                 )
                 Text(
-                    text = "$${"%.2f".format(bread.breadPrice)}",
+                    text = "${"%.2f".format(bread.breadPrice)} ETB",
                     style = MaterialTheme.typography.titleSmall.copy(
                         fontWeight = FontWeight.Bold,
                         color = TealDark
@@ -274,6 +274,7 @@ fun BreadItem(
                         completedBreadViewModel.insert(completedBread)
 
                         showAddedAnimation = true
+                        breadQuantity = 1
 
                         CoroutineScope(Dispatchers.Main).launch {
                             delay(1000)
