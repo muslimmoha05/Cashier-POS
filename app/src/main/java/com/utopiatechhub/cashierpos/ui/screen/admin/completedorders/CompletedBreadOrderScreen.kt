@@ -246,7 +246,7 @@ fun CompletedBreadOrderScreen(navController: NavController) {
         }
     }
 
-    // Clear confirmation dialog remains the same
+    // Clear confirmation dialog
     if (showClearConfirmationDialog) {
         AlertDialog(
             onDismissRequest = { showClearConfirmationDialog = false },
