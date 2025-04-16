@@ -57,6 +57,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
@@ -66,6 +67,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.utopiatechhub.cashierpos.R
 import com.utopiatechhub.cashierpos.database.AppDatabase
 import com.utopiatechhub.cashierpos.repository.CompletedBreadRepository
 import com.utopiatechhub.cashierpos.repository.CompletedCakeRepository
@@ -97,7 +99,7 @@ fun AdminDashboardScreen(navController: NavHostController) {
     val context = LocalContext.current
     val database = AppDatabase.getDatabase(context.applicationContext)
 
-    // Initialize repositories
+    // Repositories
     val completedBreadRepository = CompletedBreadRepository(database.completedBreadDao())
     val completedCakeRepository = CompletedCakeRepository(database.completedCakeDao())
     val completedHotDrinkRepository = CompletedHotDrinkRepository(database.completedHotDrinkDao())
@@ -106,28 +108,14 @@ fun AdminDashboardScreen(navController: NavHostController) {
     val completedPackedFoodRepository = CompletedPackedFoodRepository(database.completedPackedFoodDao())
     val completedOrderRepository = CompletedOrderRepository(database.completedOrderDao(), database.orderDao())
 
-    // Initialize view models
-    val completedBreadViewModel: CompletedBreadViewModel = viewModel(
-        factory = CompletedBreadViewModelFactory(completedBreadRepository)
-    )
-    val completedCakeViewModel: CompletedCakeViewModel = viewModel(
-        factory = CompletedCakeViewModelFactory(completedCakeRepository)
-    )
-    val completedHotDrinkViewModel: CompletedHotDrinkViewModel = viewModel(
-        factory = CompletedHotDrinkViewModelFactory(completedHotDrinkRepository)
-    )
-    val completedSoftDrinkViewModel: CompletedSoftDrinkViewModel = viewModel(
-        factory = CompletedSoftDrinkViewModelFactory(completedSoftDrinkRepository)
-    )
-    val completedJuiceViewModel: CompletedJuiceViewModel = viewModel(
-        factory = CompletedJuiceViewModelFactory(completedJuiceRepository)
-    )
-    val completedPackedFoodViewModel: CompletedPackedFoodViewModel = viewModel(
-        factory = CompletedPackedFoodViewModelFactory(completedPackedFoodRepository)
-    )
-    val completedOrderViewModel: CompletedOrderViewModel = viewModel(
-        factory = CompletedOrderViewModelFactory(completedOrderRepository)
-    )
+    // ViewModels
+    val completedBreadViewModel: CompletedBreadViewModel = viewModel(factory = CompletedBreadViewModelFactory(completedBreadRepository))
+    val completedCakeViewModel: CompletedCakeViewModel = viewModel(factory = CompletedCakeViewModelFactory(completedCakeRepository))
+    val completedHotDrinkViewModel: CompletedHotDrinkViewModel = viewModel(factory = CompletedHotDrinkViewModelFactory(completedHotDrinkRepository))
+    val completedSoftDrinkViewModel: CompletedSoftDrinkViewModel = viewModel(factory = CompletedSoftDrinkViewModelFactory(completedSoftDrinkRepository))
+    val completedJuiceViewModel: CompletedJuiceViewModel = viewModel(factory = CompletedJuiceViewModelFactory(completedJuiceRepository))
+    val completedPackedFoodViewModel: CompletedPackedFoodViewModel = viewModel(factory = CompletedPackedFoodViewModelFactory(completedPackedFoodRepository))
+    val completedOrderViewModel: CompletedOrderViewModel = viewModel(factory = CompletedOrderViewModelFactory(completedOrderRepository))
 
     var showClearAllConfirmationDialog by remember { mutableStateOf(false) }
 
@@ -136,7 +124,7 @@ fun AdminDashboardScreen(navController: NavHostController) {
             CenterAlignedTopAppBar(
                 title = {
                     Text(
-                        text = "Admin Dashboard",
+                        text = stringResource(R.string.admin_dashboard),
                         fontWeight = FontWeight.Bold,
                         style = MaterialTheme.typography.headlineSmall
                     )
@@ -145,7 +133,7 @@ fun AdminDashboardScreen(navController: NavHostController) {
                     IconButton(onClick = { navController.navigate("admin_setting") }) {
                         Icon(
                             imageVector = Icons.Default.Settings,
-                            contentDescription = "Settings",
+                            contentDescription = stringResource(R.string.settings),
                             tint = MaterialTheme.colorScheme.onSurface
                         )
                     }
@@ -159,10 +147,8 @@ fun AdminDashboardScreen(navController: NavHostController) {
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState())
         ) {
-            // Header with greeting
             DashboardHeader()
 
-            // Main content with categorized sections
             Column(
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
@@ -170,34 +156,30 @@ fun AdminDashboardScreen(navController: NavHostController) {
             ) {
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // Menu Management Section
-                DashboardSection(title = "Menu Management") {
+                DashboardSection(title = stringResource(R.string.menu_management)) {
                     ManageMenuButton(navController)
                 }
 
-                // Orders Section
-                DashboardSection(title = "Orders") {
+                DashboardSection(title = stringResource(R.string.orders_text)) {
                     CompletedOrdersButton(
                         navController = navController,
                         onClearAll = { showClearAllConfirmationDialog = true }
                     )
                 }
 
-                // Reports Section
-                DashboardSection(title = "Reports & Analytics") {
+                DashboardSection(title = stringResource(R.string.reports)) {
                     SummaryButton(navController)
                 }
 
-                // Staff Management Section
-                DashboardSection(title = "Staff Management") {
+                DashboardSection(title = stringResource(R.string.staff_management)) {
                     DashboardButton(
-                        text = "አስትናጋጆች",
+                        text = stringResource(R.string.waiters),
                         icon = Icons.Default.Person,
                         onClick = { navController.navigate("manage_waiter") }
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     DashboardButton(
-                        text = "ካሼር",
+                        text = stringResource(R.string.cashiers),
                         icon = Icons.Default.Person,
                         onClick = { navController.navigate("manage_cashier") }
                     )
@@ -206,26 +188,25 @@ fun AdminDashboardScreen(navController: NavHostController) {
         }
     }
 
-    // Clear all confirmation dialog
     if (showClearAllConfirmationDialog) {
         AlertDialog(
             onDismissRequest = { showClearAllConfirmationDialog = false },
             icon = {
                 Icon(
                     Icons.Outlined.Warning,
-                    contentDescription = "Warning",
+                    contentDescription = null,
                     tint = MaterialTheme.colorScheme.error
                 )
             },
             title = {
                 Text(
-                    "Clear All Completed Orders?",
+                    text = stringResource(R.string.clear_all_orders),
                     style = MaterialTheme.typography.titleMedium
                 )
             },
             text = {
                 Text(
-                    "This will permanently remove all completed orders from the history.",
+                    text = stringResource(R.string.clear_orders_message),
                     style = MaterialTheme.typography.bodyMedium
                 )
             },
@@ -240,21 +221,19 @@ fun AdminDashboardScreen(navController: NavHostController) {
                         completedPackedFoodViewModel.clearAllCompletedPackedFoods()
                         completedOrderViewModel.clearCompletedOrders()
                         showClearAllConfirmationDialog = false
-                    },
-                    modifier = Modifier.semantics { role = androidx.compose.ui.semantics.Role.Button }
+                    }
                 ) {
                     Text(
-                        "Clear All",
+                        text = stringResource(R.string.clear_all),
                         color = MaterialTheme.colorScheme.error
                     )
                 }
             },
             dismissButton = {
                 TextButton(
-                    onClick = { showClearAllConfirmationDialog = false },
-                    modifier = Modifier.semantics { role = androidx.compose.ui.semantics.Role.Button }
+                    onClick = { showClearAllConfirmationDialog = false }
                 ) {
-                    Text("Cancel")
+                    Text(text = stringResource(R.string.cancel))
                 }
             },
             shape = MaterialTheme.shapes.extraLarge,
@@ -283,13 +262,13 @@ private fun DashboardHeader() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Welcome Admin",
+                text = stringResource(R.string.welcome_admin),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = "Manage your restaurant operations",
+                text = stringResource(R.string.intro_title),
                 style = MaterialTheme.typography.bodyMedium
             )
         }
@@ -297,10 +276,7 @@ private fun DashboardHeader() {
 }
 
 @Composable
-private fun DashboardSection(
-    title: String,
-    content: @Composable () -> Unit
-) {
+private fun DashboardSection(title: String, content: @Composable () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -317,11 +293,7 @@ private fun DashboardSection(
 }
 
 @Composable
-fun DashboardButton(
-    text: String,
-    icon: ImageVector,
-    onClick: () -> Unit
-) {
+fun DashboardButton(text: String, icon: ImageVector, onClick: () -> Unit) {
     OutlinedButton(
         onClick = onClick,
         modifier = Modifier
@@ -356,18 +328,18 @@ fun DashboardButton(
 @Composable
 fun ManageMenuButton(navController: NavHostController) {
     val menuItems = listOf(
-        Triple("የምግቦች ምድብ", Icons.Default.Category, "manage_food_category"),
-        Triple("ምግቦች", Icons.Default.Fastfood, "manage_food"),
-        Triple("ኬክ", Icons.Default.Cake, "manage_cake"),
-        Triple("ዳቦና አሳንቡሳ", Icons.Default.BakeryDining, "manage_bread"),
-        Triple("ጭማቂ", Icons.Default.LocalDrink, "manage_juice"),
-        Triple("ትኩስ መጠጥ", Icons.Default.LocalCafe, "manage_hot_drink"),
-        Triple("ለስላሳ መጠጥ", Icons.Default.LocalBar, "manage_soft_drink"),
-        Triple("የታሸጉ ምግቦች", Icons.Default.Cookie, "manage_packed_food")
+        Triple(stringResource(R.string.food_category), Icons.Default.Category, "manage_food_category"),
+        Triple(stringResource(R.string.food), Icons.Default.Fastfood, "manage_food"),
+        Triple(stringResource(R.string.cake), Icons.Default.Cake, "manage_cake"),
+        Triple(stringResource(R.string.bread), Icons.Default.BakeryDining, "manage_bread"),
+        Triple(stringResource(R.string.juice), Icons.Default.LocalDrink, "manage_juice"),
+        Triple(stringResource(R.string.hot_drink), Icons.Default.LocalCafe, "manage_hot_drink"),
+        Triple(stringResource(R.string.soft_drink), Icons.Default.LocalBar, "manage_soft_drink"),
+        Triple(stringResource(R.string.packed_food), Icons.Default.Cookie, "manage_packed_food")
     )
 
     ExpandableSection(
-        title = "ሜኑ",
+        title = stringResource(R.string.menu_text),
         icon = Icons.Default.Menu,
         items = menuItems,
         navController = navController
@@ -378,16 +350,16 @@ fun ManageMenuButton(navController: NavHostController) {
 fun CompletedOrdersButton(
     navController: NavHostController,
     onClearAll: () -> Unit,
-    title: String = "ያለቁ ትእዛዞች"
+    title: String = stringResource(R.string.completed_orders_text)
 ) {
     val completedOrders = listOf(
-        Triple("የምግቦች ትእዛዝ", Icons.Default.Fastfood, "completed_order"),
-        Triple("የኬክ ትእዛዝ", Icons.Default.Cake, "completed_cake_order"),
-        Triple("የትኩስ መጠጥ ትእዛዝ", Icons.Default.LocalCafe, "completed_hot_drink_order"),
-        Triple("የለስላሳ መጠጥ ትእዛዝ", Icons.Default.LocalBar, "completed_soft_drink_order"),
-        Triple("የዳቦና አሳንቡሳ ትእዛዝ", Icons.Default.BakeryDining, "completed_bread_order"),
-        Triple("የጁስ ትእዛዝ", Icons.Default.LocalDrink, "completed_juice_order"),
-        Triple("የታሸጉ ምግቦች", Icons.Default.Cookie, "completed_packed_food_order")
+        Triple(stringResource(R.string.food_orders), Icons.Default.Fastfood, "completed_order"),
+        Triple(stringResource(R.string.cake_orders), Icons.Default.Cake, "completed_cake_order"),
+        Triple(stringResource(R.string.hot_drink_orders), Icons.Default.LocalCafe, "completed_hot_drink_order"),
+        Triple(stringResource(R.string.soft_drink_orders), Icons.Default.LocalBar, "completed_soft_drink_order"),
+        Triple(stringResource(R.string.bread_orders), Icons.Default.BakeryDining, "completed_bread_order"),
+        Triple(stringResource(R.string.juice_orders), Icons.Default.LocalDrink, "completed_juice_order"),
+        Triple(stringResource(R.string.packed_food_orders), Icons.Default.Cookie, "completed_packed_food_order")
     )
 
     ExpandableSectionWithClear(
@@ -399,25 +371,27 @@ fun CompletedOrdersButton(
     )
 }
 
+
 @Composable
 fun SummaryButton(navController: NavHostController) {
     val summaryItems = listOf(
-        Triple("የምግብ ማጠቃለያ", Icons.Default.Fastfood, "food_summary"),
-        Triple("የኬክ ማጠቃለያ", Icons.Default.Cake, "cake_summary"),
-        Triple("የትኩስ መጠጥ ማጠቃለያ", Icons.Default.LocalCafe, "hot_drink_summary"),
-        Triple("የለስላሳ እና ውሃ ማጠቃለያ", Icons.Default.LocalBar, "soft_drink_summary"),
-        Triple("የዳቦ እና አሳንቡሳ ማጠቃለያ", Icons.Default.BakeryDining, "bread_summary"),
-        Triple("የጁስ ማጠቃለያ", Icons.Default.LocalDrink, "juice_summary"),
-        Triple("የታሸጉ ምግቦች", Icons.Default.Cookie, "packed_food_summary")
+        Triple(stringResource(R.string.food_summary), Icons.Default.Fastfood, "food_summary"),
+        Triple(stringResource(R.string.cake_summary), Icons.Default.Cake, "cake_summary"),
+        Triple(stringResource(R.string.hot_drink_summary), Icons.Default.LocalCafe, "hot_drink_summary"),
+        Triple(stringResource(R.string.soft_drink_summary), Icons.Default.LocalBar, "soft_drink_summary"),
+        Triple(stringResource(R.string.bread_summary), Icons.Default.BakeryDining, "bread_summary"),
+        Triple(stringResource(R.string.juice_summary), Icons.Default.LocalDrink, "juice_summary"),
+        Triple(stringResource(R.string.packed_food_summary), Icons.Default.Cookie, "packed_food_summary")
     )
 
     ExpandableSection(
-        title = "ማጠቃለያ",
+        title = stringResource(R.string.summary_text),
         icon = Icons.Default.BarChart,
         items = summaryItems,
         navController = navController
     )
 }
+
 
 @Composable
 private fun ExpandableSection(
@@ -537,16 +511,17 @@ private fun ExpandableSectionWithClear(
                         IconButton(
                             onClick = { onClearAll() },
                             modifier = Modifier.semantics {
-                                contentDescription = "Clear all completed orders"
+                                contentDescription = "Clear All Completed Orders?"
                                 role = androidx.compose.ui.semantics.Role.Button
                             }
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.DeleteSweep,
-                                contentDescription = "Clear All",
+                                contentDescription = stringResource(R.string.clear_all),
                                 tint = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
+
                         Icon(
                             imageVector = if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
                             contentDescription = if (expanded) "Collapse" else "Expand"

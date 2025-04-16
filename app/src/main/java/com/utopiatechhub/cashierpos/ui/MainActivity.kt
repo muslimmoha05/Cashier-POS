@@ -1,6 +1,7 @@
 package com.utopiatechhub.cashierpos.ui
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -25,10 +26,14 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.utopiatechhub.cashierpos.language.LanguageDataStore
+import com.utopiatechhub.cashierpos.language.LocaleHelper
 import com.utopiatechhub.cashierpos.ui.screen.AdminLoginScreen
 import com.utopiatechhub.cashierpos.ui.screen.ClientLoginScreen
 import com.utopiatechhub.cashierpos.ui.screen.RegisterScreen
 import com.utopiatechhub.cashierpos.ui.theme.CashierPOSTheme
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 
 @RequiresApi(Build.VERSION_CODES.Q)
 class MainActivity : ComponentActivity() {
@@ -38,11 +43,21 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             CashierPOSTheme {
-                Surface( color = MaterialTheme.colorScheme.background ) {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
                     MainScreen()
                 }
             }
         }
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        val lang = runBlocking {
+            LanguageDataStore(newBase).languageFlow.first()
+        }
+        super.attachBaseContext(LocaleHelper.wrap(newBase, lang))
     }
 }
 

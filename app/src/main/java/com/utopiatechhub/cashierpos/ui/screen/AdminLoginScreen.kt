@@ -32,6 +32,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -41,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.utopiatechhub.cashierpos.R
 import com.utopiatechhub.cashierpos.authentication.TenantDataStore
 import com.utopiatechhub.cashierpos.database.AppDatabase
 import com.utopiatechhub.cashierpos.authentication.UserRepository
@@ -55,8 +57,8 @@ fun AdminLoginScreen(navController: NavController) {
     var adminUsernameError by remember { mutableStateOf(false) }
     var adminPasswordError by remember { mutableStateOf(false) }
     var passwordVisible by remember { mutableStateOf(false) }
-    var isLoading by remember { mutableStateOf(false) } // Loading state
-    var errorMessage by remember { mutableStateOf<String?>(null) } // Generic error message
+    var isLoading by remember { mutableStateOf(false) }
+    var errorMessage by remember { mutableStateOf<String?>(null) }
 
     val context = LocalContext.current
     val database = AppDatabase.getDatabase(context.applicationContext)
@@ -68,12 +70,12 @@ fun AdminLoginScreen(navController: NavController) {
     fun validateFields(): Boolean {
         return when {
             adminUserName.isEmpty() -> {
-                errorMessage = "Username cannot be empty"
+                errorMessage = context.getString(R.string.username_empty)
                 adminUsernameError = true
                 false
             }
             password.isEmpty() -> {
-                errorMessage = "Password cannot be empty"
+                errorMessage = context.getString(R.string.password_empty)
                 adminPasswordError = true
                 false
             }
@@ -90,7 +92,7 @@ fun AdminLoginScreen(navController: NavController) {
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
-                text = "Admin Login",
+                text = stringResource(R.string.admin_login),
                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 32.sp, color = Teal),
                 textAlign = TextAlign.Center
             )
@@ -103,7 +105,7 @@ fun AdminLoginScreen(navController: NavController) {
                     adminUserName = it
                     adminUsernameError = false
                 },
-                label = { Text("Username") },
+                label = { Text(stringResource(R.string.admin_code)) },
                 isError = adminUsernameError,
                 modifier = Modifier.fillMaxWidth()
             )
@@ -116,7 +118,7 @@ fun AdminLoginScreen(navController: NavController) {
                     password = it
                     adminPasswordError = false
                 },
-                label = { Text("Password") },
+                label = { Text(stringResource(R.string.password)) },
                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
@@ -150,7 +152,7 @@ fun AdminLoginScreen(navController: NavController) {
                             if (user != null && user.role == "admin") {
                                 navController.navigate("admin")
                             } else {
-                                errorMessage = "Incorrect username or password"
+                                errorMessage = context.getString(R.string.incorrect_credentials)
                                 adminUsernameError = true
                                 adminPasswordError = true
                             }
@@ -166,14 +168,14 @@ fun AdminLoginScreen(navController: NavController) {
                 if (isLoading) {
                     CircularProgressIndicator(color = Color.White)
                 } else {
-                    Text(text = "Login", color = Color.White)
+                    Text(text = stringResource(R.string.login), color = Color.White)
                 }
             }
 
             // Navigation Links
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Client LOGIN",
+                text = stringResource(R.string.client_login),
                 modifier = Modifier
                     .clickable { navController.navigate("clientLogin") }
                     .fillMaxWidth()
@@ -183,7 +185,7 @@ fun AdminLoginScreen(navController: NavController) {
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Don't have an account? Register",
+                text = stringResource(R.string.register),
                 modifier = Modifier
                     .clickable { navController.navigate("register") }
                     .fillMaxWidth()

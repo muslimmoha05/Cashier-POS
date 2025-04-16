@@ -1,13 +1,79 @@
 <resources>
     <string name="app_name">Cashier POS</string>
-    <string name="menu">Menu</string>
-    <string name="food">Food</string>
-    <string name="hot_drink">Hot Drink</string>
-    <string name="soft_drink">Soft Drink</string>
-    <string name="bread">Bread</string>
-    <string name="cake">Cake</string>
-    <string name="juice">Juice</string>
 
-    <string name="select_category_prompt">Select a category to view details</string>
-    <string name="invalid_category_error">Invalid category selected</string>
+    <!-- =============== client login page =========== -->
+    <string name="client_login">Client Login</string>
+    <string name="client_code">Client Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="admin_login">Admin LOGIN</string>
+    <string name="register">Don\'t have an account? Register</string>
+    <string name="username_empty">Username cannot be empty</string>
+    <string name="password_empty">Password cannot be empty</string>
+    <string name="incorrect_credentials">Incorrect client code or password</string>
+
+    <!-- =============== admin login page =========== -->
+    <string name="admin_code">Admin Username</string>
+
+    <!-- =============== Register page =========== -->
+    <string name="business_name_required">Business name is required</string>
+    <string name="username_required">Username is required</string>
+    <string name="password_required">Password fields cannot be empty</string>
+    <string name="passwords_do_not_match">Passwords do not match</string>
+    <string name="role_required">Please select a role</string>
+    <string name="register_button_text">Register</string>
+    <string name="business_name">Business Name (e.g., Lovely Cafe and Restaurant)</string>
+    <string name="username">Username</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="client">Client</string>
+    <string name="admin">Admin</string>
+    <string name="already_have_account">Already have an account? LOGIN</string>
+    <string name="username_taken">Username is already taken</string>
+    <string name="registration_successful">Registration successful! Redirecting…</string>
+    <string name="registration_failed">Registration failed! Try again.</string>
+
+    <!-- ================== Admin Dashboard page =================== -->
+    <string name="admin_dashboard">Admin Dashboard</string>
+    <string name="settings">Settings</string>
+    <string name="menu_management">Menu Management</string>
+    <string name="orders_text">Orders</string>
+    <string name="reports">Reports</string>
+    <string name="staff_management">Staff Management</string>
+    <string name="waiters">Waiters</string>
+    <string name="cashiers">Cashiers</string>
+    <string name="clear_all_orders">Clear All Completed Orders?</string>
+    <string name="clear_orders_message">This will permanently remove all completed orders from the history.</string>
+    <string name="clear_all">Clear All</string>
+    <string name="cancel">Cancel</string>
+    <string name="welcome_admin">Welcome Admin</string>
+    <string name="intro_title">Manage your restaurant operations</string>
+
+    <string name="menu_text">Menu</string>
+    <string name="food_category">Food Categories</string>
+    <string name="food">Foods</string>
+    <string name="bread">Bread and Sanbusa</string>
+    <string name="cake">Cakes</string>
+    <string name="hot_drink">Hot Drinks</string>
+    <string name="soft_drink">Soft Drinks</string>
+    <string name="juice">Juices</string>
+    <string name="packed_food">Packed Foods</string>
+
+    <string name="completed_orders_text">Completed Orders</string>
+    <string name="food_orders">Food Orders</string>
+    <string name="bread_orders">Bread and Sanbusa Orders</string>
+    <string name="cake_orders">Cake Orders</string>
+    <string name="hot_drink_orders">Hot Drink Orders</string>
+    <string name="soft_drink_orders">Soft Drink Orders</string>
+    <string name="juice_orders">Juice Orders</string>
+    <string name="packed_food_orders">Packed Food Orders</string>
+
+    <string name="summary_text">Summary</string>
+    <string name="food_summary">Food Summary</string>
+    <string name="bread_summary">Bread and Sanbusa Summary</string>
+    <string name="cake_summary">Cake Summary</string>
+    <string name="hot_drink_summary">Hot Drink Summary</string>
+    <string name="soft_drink_summary">Soft Drink Summary</string>
+    <string name="juice_summary">Juice Summary</string>
+    <string name="packed_food_summary">Packed Food Summary</string>
+
 </resources>

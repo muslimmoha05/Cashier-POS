@@ -53,7 +53,9 @@
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.CashierPOS">
+            android:theme="@style/Theme.CashierPOS"
+            android:configChanges="locale|layoutDirection"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

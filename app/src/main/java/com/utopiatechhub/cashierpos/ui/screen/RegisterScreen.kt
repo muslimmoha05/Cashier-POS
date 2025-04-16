@@ -37,6 +37,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -46,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.utopiatechhub.cashierpos.R
 import com.utopiatechhub.cashierpos.authentication.TenantDataStore
 import com.utopiatechhub.cashierpos.database.AppDatabase
 import com.utopiatechhub.cashierpos.authentication.UserRepository
@@ -80,24 +82,24 @@ fun RegisterScreen(navController: NavController) {
     // Validate fields synchronously
     fun validateFields(): Boolean {
         if (businessName.isEmpty()) {
-            validationError = "Business name is required"
+            validationError = context.getString(R.string.business_name_required)
             return false
         }
         if (username.isEmpty()) {
-            validationError = "Username is required"
+            validationError = context.getString(R.string.username_required)
             return false
         }
         if (password.isEmpty() || confirmPassword.isEmpty()) {
-            validationError = "Password fields cannot be empty"
+            validationError = context.getString(R.string.password_required)
             return false
         }
 
         if (password != confirmPassword) {
-            validationError = "Passwords do not match"
+            validationError = context.getString(R.string.passwords_do_not_match)
             return false
         }
         if (role == null) {
-            validationError = "Please select a role"
+            validationError = context.getString(R.string.role_required)
             return false
         }
         return true
@@ -121,7 +123,7 @@ fun RegisterScreen(navController: NavController) {
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
-                text = "Register",
+                text = stringResource(R.string.register_button_text),
                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 32.sp, color = Teal),
                 textAlign = TextAlign.Center
             )
@@ -130,7 +132,7 @@ fun RegisterScreen(navController: NavController) {
             OutlinedTextField(
                 value = businessName,
                 onValueChange = { businessName = it },
-                label = { Text("Business Name (e.g., Lovely Cafe and Restaurant)") },
+                label = { Text(stringResource(R.string.business_name)) },
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -138,7 +140,7 @@ fun RegisterScreen(navController: NavController) {
             OutlinedTextField(
                 value = username,
                 onValueChange = { username = it },
-                label = { Text("Username") },
+                label = { Text(stringResource(R.string.username)) },
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -146,7 +148,7 @@ fun RegisterScreen(navController: NavController) {
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
-                label = { Text("Password") },
+                label = { Text(stringResource(R.string.password)) },
                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
@@ -163,28 +165,26 @@ fun RegisterScreen(navController: NavController) {
             OutlinedTextField(
                 value = confirmPassword,
                 onValueChange = { confirmPassword = it },
-                label = { Text("Confirm Password") },
+                label = { Text(stringResource(R.string.confirm_password)) },
                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(16.dp))
 
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("I am:", fontWeight = FontWeight.Bold, color = Teal)
-                Spacer(modifier = Modifier.width(8.dp))
                 RadioButton(
                     selected = role == "client",
                     onClick = { role = "client" },
                     colors = RadioButtonDefaults.colors(selectedColor = Teal, unselectedColor = Color.Gray)
                 )
-                Text("Client")
+                Text(stringResource(R.string.client))
                 Spacer(modifier = Modifier.width(16.dp))
                 RadioButton(
                     selected = role == "admin",
                     onClick = { role = "admin" },
                     colors = RadioButtonDefaults.colors(selectedColor = Teal, unselectedColor = Color.Gray)
                 )
-                Text("Admin")
+                Text(stringResource(R.string.admin))
             }
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -202,14 +202,14 @@ fun RegisterScreen(navController: NavController) {
                         val tenantId = System.currentTimeMillis()
                         userViewModel.registerUser(businessName, username, password, role!!, tenantId) { success ->
                             if (success) {
-                                successMessage = "Registration successful! Redirecting..."
+                                successMessage = context.getString(R.string.registration_successful)
                                 coroutineScope.launch {
                                     delay(3000)
                                     successMessage = null
                                     navController.navigate(if (role == "client") "clientLogin" else "adminLogin")
                                 }
                             } else {
-                                errorMessage = "Registration failed! Try again."
+                                errorMessage = context.getString(R.string.registration_failed)
                                 coroutineScope.launch {
                                     delay(3000)
                                     errorMessage = null
@@ -217,7 +217,7 @@ fun RegisterScreen(navController: NavController) {
                             }
                         }
                     } else if (isUsernameValid == false) {
-                        validationError = "Username is already taken"
+                        validationError = context.getString(R.string.username_taken)
                     }
                 },
                 modifier = Modifier
@@ -226,13 +226,13 @@ fun RegisterScreen(navController: NavController) {
                     .shadow(8.dp, shape = RoundedCornerShape(12.dp)),
                 colors = ButtonDefaults.buttonColors(containerColor = Teal)
             ) {
-                Text(text = "Register", color = Color.White)
+                Text(text = stringResource(R.string.register_button_text), color = Color.White)
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "Already have an account? LOGIN",
+                text = stringResource(R.string.already_have_account),
                 modifier = Modifier
                     .clickable { navController.navigate("clientLogin") }
                     .fillMaxWidth()
