@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cashier POS</string>
+
+    <!-- =============== client login page =========== -->
+    <string name="client_login">ደንበኛ መግቢያ</string>
+    <string name="client_code">ደንበኛ ስም</string>
+    <string name="password">የይለፍ ቃል</string>
+    <string name="login">ግባ</string>
+    <string name="admin_login">አስተዳዳሪ መግቢያ</string>
+    <string name="register">መለያ የለም? ይመዝገቡ</string>
+    <string name="username_empty">የተጠቃሚ ስም ባዶ መሆን አይችልም</string>
+    <string name="password_empty">የይለፍ ቃል ባዶ መሆን አይችልም</string>
+    <string name="incorrect_credentials">የተሳሳተ ደንበኛ ኮድ ወይም የይለፍ ቃል</string>
+
+    <!-- =============== admin login page =========== -->
+    <string name="admin_code">አስተዳዳሪ ስም</string>
+
+    <!-- =============== Register page =========== -->
+    <string name="business_name_required">የንግድ ስም ያስፈልጋል</string>
+    <string name="username_required">የተጠቃሚ ስም ያስፈልጋል</string>
+    <string name="password_required">የይለፍ ቃል መስኮቶች ባዶ መሆን አይችሉም</string>
+    <string name="passwords_do_not_match">የይለፍ ቃሎች አይዛመዱም</string>
+    <string name="role_required">እባክዎ ድርሻዎን ይምረጡ</string>
+    <string name="register_button_text">መመዝገቢያ</string>
+    <string name="business_name">የንግድ ስም (ለምሳሌ፡ ላቭሊ ካፌ እና ሬስቶራንት)</string>
+    <string name="username">የተጠቃሚ ስም</string>
+    <string name="confirm_password">የይለፍ ቃልን ያረጋግጡ</string>
+    <string name="client">ደንበኛ</string>
+    <string name="admin">አስተዳዳሪ</string>
+    <string name="already_have_account">መለያ አለኝ? ግባ</string>
+    <string name="username_taken">የተጠቃሚ ስም ተይዞአል</string>
+    <string name="registration_successful">ምዝገባው ተሳክቷል! በማዛወርላይ…</string>
+    <string name="registration_failed">ምዝገባው አልተሳካም! እባክዎን ደግመው ይሞክሩ</string>
+
+    <!-- ================== Admin Dashboard page =================== -->
+    <string name="admin_dashboard">የአስተዳዳሪ ገጽ</string>
+    <string name="settings">ማስተካከያ</string>
+    <string name="menu_management">የሜኑ አስተዳደር</string>
+    <string name="orders_text">ትዕዛዞች</string>
+    <string name="reports">ሪፖርቶች</string>
+    <string name="staff_management">የሰራተኞች አስተዳደር</string>
+    <string name="waiters">አስተናጋጆች</string>
+    <string name="cashiers">ካሼሮች</string>
+    <string name="clear_all_orders">ሁሉንም የተጠናቀቁ ትዕዛዞች ያጥፉ?</string>
+    <string name="clear_orders_message">ይህ የተጠናቀቁ ትዕዛዞችን ከታሪኩ በማፅዳት በቋሚነት ያስወግዳል።</string>
+    <string name="clear_all">ሁሉንም አጥፋ</string>
+    <string name="cancel">ሰርዝ</string>
+    <string name="welcome_admin">እንኳን ደህና መጡ አስተዳዳሪ</string>
+    <string name="intro_title">የሬስቶራንትዎን አስተዳደር ያዘምኑ</string>
+
+    <string name="menu_text">ሜኑ</string>
+    <string name="food_category">የምግብ ምድቦች</string>
+    <string name="food">ምግቦች</string>
+    <string name="bread">ዳቦ እና ሳምቡሳ</string>
+    <string name="cake">ኬኮች</string>
+    <string name="hot_drink">ትኩስ መጠጦች</string>
+    <string name="soft_drink">ለስላሳ መጠጦች</string>
+    <string name="juice">ጁሶች</string>
+    <string name="packed_food">የታሸጉ ምግቦች</string>
+
+    <string name="completed_orders_text">የተጠናቀቁ ትዕዛዞች</string>
+    <string name="food_orders">የምግብ ትዕዛዞች</string>
+    <string name="bread_orders">የዳቦ እና ሳምቡሳ ትዕዛዞች</string>
+    <string name="cake_orders">የኬክ ትዕዛዞች</string>
+    <string name="hot_drink_orders">የትኩስ መጠጦች ትዕዛዞች</string>
+    <string name="soft_drink_orders">የለስላሳ መጠጦች ትዕዛዞች</string>
+    <string name="juice_orders">የጁስ ትዕዛዞች</string>
+    <string name="packed_food_orders">የታሸጉ ምግቦች ትዕዛዞች</string>
+
+    <string name="summary_text">ማጠቃለያ</string>
+    <string name="food_summary">የምግብ ማጠቃለያ</string>
+    <string name="bread_summary">የዳቦ እና ሳምቡሳ ማጠቃለያ</string>
+    <string name="cake_summary">የኬክ ማጠቃለያ</string>
+    <string name="hot_drink_summary">የትኩስ መጠጦች ማጠቃለያ</string>
+    <string name="soft_drink_summary">የለስላሳ መጠጦች ማጠቃለያ</string>
+    <string name="juice_summary">የጁስ ማጠቃለያ</string>
+    <string name="packed_food_summary">የታሸጉ ምግቦች ማጠቃለያ</string>
+
+</resources>
